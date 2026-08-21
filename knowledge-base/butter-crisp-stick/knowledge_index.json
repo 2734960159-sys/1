@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.1",
+  "version": 2,
+  "entries": [
+    {
+      "id": "BCS-GEOMETRY-PRISM-V2",
+      "type": "rule",
+      "title": "黄油脆丝棒三轴与端面硬锁",
+      "instruction": "单根同时锁定12×2.5×1 cm三轴；端面为轻圆角长方形，厚宽比目标0.40、审核安全区0.30–0.50。端面圆形/椭圆形触发PRODUCT_CROSS_SECTION_ROUNDED，薄片化触发PRODUCT_THICKNESS_COLLAPSED。",
+      "path": null,
+      "applies_to": {
+        "product_profile": "butter-crisp-stick-v1",
+        "product_state": ["whole", "breaking", "two_segments", "person_eating", "bitten_display"]
+      },
+      "tags": ["黄油脆丝棒", "三轴", "截面", "厚度"],
+      "priority": 100,
+      "approved": true,
+      "version": 2
+    },
+    {
+      "id": "BCS-PACKAGE-IDENTITY-COMPOSITE-V2",
+      "type": "rule",
+      "title": "可读包装正面确定性贴图",
+      "instruction": "包装正面达到可读尺寸时，先完成15:15:4.5盒体几何，再把包装盒.png批准像素逐盒做蒙版和透视贴合；禁止生成模型重写达尔顿、黄油脆丝棒、净含量:120克。",
+      "path": null,
+      "applies_to": {
+        "product_profile": "butter-crisp-stick-v1",
+        "product_state": ["retail_box_unopened"]
+      },
+      "tags": ["包装", "文字", "透视贴图", "品牌身份"],
+      "priority": 100,
+      "approved": true,
+      "version": 2
+    },
+    {
+      "id": "BCS-OBJECT-BY-OBJECT-QA-V2",
+      "type": "rule",
+      "title": "逐对象原尺寸批准闸门",
+      "instruction": "联系表只作索引。批准前在原分辨率全图清点所有可见产品和外盒，为每个实例建立原尺寸裁图、边界框、可见轴、三轴或人工透视结论；漏记任何实例则整镜失败。",
+      "path": null,
+      "applies_to": {
+        "product_profile": "butter-crisp-stick-v1",
+        "visual_type": ["product_showcase", "person_product_showcase", "person_eating"]
+      },
+      "tags": ["QA", "原尺寸", "逐对象", "联系表"],
+      "priority": 100,
+      "approved": true,
+      "version": 2
+    }
+  ]
+}
