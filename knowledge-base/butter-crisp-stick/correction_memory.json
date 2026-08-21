@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "version": 2,
+  "rules": [
+    {
+      "id": "CORR-BCS-20260821-001",
+      "failure_code": "PRODUCT_CROSS_SECTION_ROUNDED",
+      "symptom": "手中黄油脆丝棒端面或整体轮廓由轻圆角长方体变成圆形、椭圆形或圆柱。",
+      "root_cause": "只锁定颜色、材质和长宽比，没有独立锁定1 cm厚度与2.5:1轻圆角矩形端面；缩小联系表掩盖了轮廓错误。",
+      "resolution": "从同编号原始首帧单次重做，写入12×2.5×1 cm、厚宽比0.40、端面轻圆角长方形并排除圆柱；逐对象查看原尺寸裁图。",
+      "evidence": ["regression_case:F009v2"],
+      "approved": true,
+      "version": 1
+    },
+    {
+      "id": "CORR-BCS-20260821-002",
+      "failure_code": "PRODUCT_THICKNESS_COLLAPSED",
+      "symptom": "手持产品厚度变薄，像威化片或纸条。",
+      "root_cause": "二维长宽比例通过但Z轴未测量，手指遮挡和斜视让薄片化在联系表中不明显。",
+      "resolution": "侧面/端面可比时记录厚宽比，目标0.40、安全区0.30–0.50；不可测时必须原尺寸人工判断并说明透视依据。",
+      "evidence": ["regression_case:F014v1"],
+      "approved": true,
+      "version": 1
+    },
+    {
+      "id": "CORR-BCS-20260821-003",
+      "failure_code": "PACKAGE_PRINT_IDENTITY_MISMATCH",
+      "symptom": "外盒的黄油脆丝棒字形、品牌、净含量、产品图或整体版式与批准包装不一致。",
+      "root_cause": "把包装正面文字交给生成模型重写，并只检查主盒或整体橙色观感。",
+      "resolution": "可读正面使用包装盒.png批准像素逐盒做蒙版与透视贴合，恢复手指/箱体遮挡；逐盒核对达尔顿、黄油脆丝棒、净含量:120克和版式。",
+      "evidence": ["regression_case:F013v1"],
+      "approved": true,
+      "version": 1
+    },
+    {
+      "id": "CORR-BCS-20260821-004",
+      "failure_code": "PACKAGE_DEPTH_COLLAPSED",
+      "symptom": "15×15×4.5 cm外盒的Z轴厚度塌缩成纸片或平板。",
+      "root_cause": "只检查正面方形，没有为每只盒记录透视校正后的盒厚；多盒同框时用单盒代表全部。",
+      "resolution": "逐盒检查15:15:4.5三轴；可比时厚/正面边长目标0.30、安全区0.24–0.36，无法测量时记录原尺寸人工深度依据。",
+      "evidence": ["regression_case:F013v1", "regression_case:F022v1"],
+      "approved": true,
+      "version": 1
+    }
+  ]
+}

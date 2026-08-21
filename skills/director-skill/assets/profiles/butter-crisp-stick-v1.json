@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "butter-crisp-stick-v1",
+  "name": "达尔顿黄油脆丝棒",
+  "version": 2,
+  "scale_mode_default": "physical_consistency",
+  "scale_modes": {
+    "physical_consistency": {
+      "single_stick_cm": [12, 2.5, 1],
+      "retail_box_cm": [15, 15, 4.5],
+      "same_plane_stick_to_box_face_ratio": 0.8,
+      "perspective_correction_required": true
+    },
+    "relative_pixel_resize": {
+      "allowed_only_when_user_explicitly_requests_percentage_resize": true,
+      "exclusive_source": "the user-selected original approved frame",
+      "linear_scale_only": true,
+      "cannot_mix_with_physical_consistency": true
+    }
+  },
+  "object_qa_rules": {
+    "contact_sheet_role": "index_only_never_approval",
+    "inventory_complete_required": true,
+    "original_size_crop_required_per_visible_instance": true,
+    "product_geometry": {
+      "length_to_width_ratio": [4.0, 5.0],
+      "thickness_to_width_target": 0.4,
+      "thickness_to_width_safe_range": [0.3, 0.5],
+      "cross_section_shape": "rectangular_with_small_corner_radius",
+      "failure_codes": ["PRODUCT_CROSS_SECTION_ROUNDED", "PRODUCT_THICKNESS_COLLAPSED"]
+    },
+    "retail_box_geometry": {
+      "front_aspect_ratio_safe_range": [0.9, 1.1],
+      "depth_to_front_edge_target": 0.3,
+      "depth_to_front_edge_safe_range": [0.24, 0.36],
+      "failure_codes": ["PACKAGE_SCALE_MISMATCH", "PACKAGE_DEPTH_COLLAPSED"]
+    },
+    "retail_box_print": {
+      "legible_front_requires_deterministic_reference_composite": true,
+      "reference_asset_id": "package",
+      "exact_pixel_fields": ["达尔顿", "黄油脆丝棒", "净含量:120克"],
+      "forbid_generative_text_rewrite": true,
+      "failure_code": "PACKAGE_PRINT_IDENTITY_MISMATCH"
+    }
+  },
+  "immutable_traits": [
+    "单根为约12×2.5×1厘米的细长长方体糕点，视觉长宽比约4:1至5:1，四条长边和端角轻微圆钝",
+    "完整体直挺脆硬，不弯曲、拉伸、塌软或像海绵蛋糕回弹",
+    "通体为明亮橙金色，存在轻微深浅烘烤色差和少量油润高光，不是荧光橙或塑料喷漆色",
+    "六个面由大量真实、独立、短小扁平且宽度可见的烘烤脆丝碎片密集搭接成实体粗糙外壳",
+    "脆丝碎片具有独立厚度、断裂边缘、前后遮挡、局部翘起、不规则窄缝、微投影和少量轮廓凸出",
+    "不得出现大面积均匀光滑橙色基底，也不得把脆丝做成贴图、印刷图案、划痕、浅浮雕、压花或均匀卷曲细线",
+    "破损端面为同色系疏松多孔、纤维化糕体，没有流心、奶油夹层、芝士拉丝或独立黄油芯",
+    "碎屑只在咬合或掰断受力点附近少量出现，不形成爆炸式粉尘或整层炸衣脱落"
+  ],
+  "packaging_specs": {
+    "retail_box": {
+      "size_cm": [15, 15, 4.5],
+      "front_aspect_ratio": "1:1",
+      "thickness_to_front_edge_ratio": 0.3,
+      "thickness_to_front_edge_safe_range": [0.24, 0.36],
+      "appearance": "高饱和橙色扁方盒，浅橙线描底纹，正面黑色达尔顿与书法感黄油脆丝棒，净含量120克，烘烤类糕点（原味）",
+      "legible_front_artwork_policy": "deterministic_reference_composite_only",
+      "forbidden": ["薄纸片", "立方体", "砖形厚盒", "长条盒", "漂浮", "擅自改字"]
+    },
+    "individual_pouch": {
+      "size_cm": [15, 4.5, 2],
+      "appearance": "素金色金属膜枕式袋，上下热压锯齿封口",
+      "contents": "透明浅边单根托盒与一根完整黄油脆丝棒"
+    }
+  },
+  "state_profiles": {
+    "retail_box_unopened": {
+      "description": "未开封零售外盒",
+      "required": ["盒数与原镜头一致", "1:1正方形正面", "盒厚约正面边长30%", "印刷方向与透视一致"],
+      "forbidden": ["新增外盒", "不同尺寸同框", "纸片盒", "乱码营销文字"]
+    },
+    "individual_pouch_sealed": {
+      "description": "完整独立包装",
+      "required": ["金色枕式袋封口完整", "数量与持有者连续", "膜面折痕和受力褶皱符合动作"],
+      "forbidden": ["凭空开袋", "产品直接贴膜裸装", "托盒无故消失"]
+    },
+    "opening_pouch": {
+      "description": "开袋并露出完整产品",
+      "required": ["从真实封口撕开", "透明托盒与产品沿长轴逐步滑出", "开袋前后数量守恒"],
+      "forbidden": ["瞬间跳到裸产品", "袋体复原", "手指穿透包装"]
+    },
+    "whole": {
+      "description": "完整未破手持或摆盘",
+      "required": ["直挺橙金细长长方体", "实体片状脆丝覆盖层", "产品数量与盘中拓扑继承原镜头"],
+      "forbidden": ["光滑橙色棒体", "贴图纹理", "圆柱", "软面包", "盘中整齐阵列"]
+    },
+    "breaking": {
+      "description": "双手掰断过程",
+      "required": ["同一根两端反向受力", "几乎不弯曲", "受力点先裂后短促咔嚓断开", "只产生少量局部碎屑"],
+      "forbidden": ["拉丝", "流心", "整层脱壳", "断裂前直接出现两段"]
+    },
+    "two_segments": {
+      "description": "两段断面展示",
+      "required": ["两段来自同一根", "断面朝镜头", "同色系疏松多孔纤维糕体"],
+      "forbidden": ["规则刀切面", "奶油夹心", "独立黄油芯", "产品无故复原"]
+    },
+    "person_eating": {
+      "description": "人物咬食过程",
+      "required": ["产品接近嘴部", "张口", "上下牙齿短促咬断", "产品离嘴", "形成自然咬口", "闭口咀嚼并吞咽后再说话"],
+      "forbidden": ["边咀嚼边说话", "展示口腔", "产品瞬间缩短", "嘴唇牙齿或手指穿模"]
+    },
+    "bitten_display": {
+      "description": "自然咬口展示",
+      "required": ["不规则纤维断裂面", "剩余长度与咬前同一根连续", "少量碎屑符合咬合位置"],
+      "forbidden": ["平整切面", "流心", "新增产品", "咬口位置跳变"]
+    },
+    "crumbs_finish": {
+      "description": "少量碎屑收尾",
+      "required": ["只在盘面、包装边缘、指尖或嘴角附近出现", "数量与前置动作相符"],
+      "forbidden": ["粉尘爆炸", "满桌脏乱", "无动作来源的碎屑"]
+    }
+  },
+  "plate_topology_lock": [
+    "逐根继承可见根数、盘内中心位置、长轴方向、前中后层级、交叉点、露出端、遮挡比例和盘沿关系",
+    "不得重排为两排平码、平行阵列、扇形、网格、金字塔或广告式整齐陈列",
+    "每根必须由盘面或其他产品提供重力支撑，不得悬空、穿插或无接触漂浮"
+  ],
+  "global_negative_constraints": [
+    "油炸鱼条", "炸鸡柳", "面包糠炸物", "薯条", "椰蓉棒", "肉松卷", "威化棒", "蛋卷", "曲奇", "麻花",
+    "软面包", "海绵蛋糕", "奶油夹心", "流心", "芝士拉丝", "独立黄油块", "塑料玩具", "霓虹橙",
+    "光滑橙色棒体", "圆柱棒体", "圆形或椭圆形端面", "薄威化片", "纸条状产品", "平面贴图", "印刷脆丝图案", "贴纸纹理", "浅浮雕", "压花", "划痕", "均匀卷曲细线",
+    "大面积裸露光滑基底", "爆炸式碎屑", "产品无故复原", "数量凭空增减", "手指穿透产品", "包装文字乱码", "价格和平台UI"
+  ],
+  "reference_assets": [
+    {"id": "detail", "path": "skills/extract-skill/assets/products/butter-crisp-stick/细节.jpg", "purpose": "裸产品实体片状覆盖层、独立厚度、遮挡、窄缝、微投影和轮廓凸出", "approved": true},
+    {"id": "package", "path": "skills/extract-skill/assets/products/butter-crisp-stick/包装盒.png", "purpose": "零售外盒颜色、正面品牌与版式", "approved": true},
+    {"id": "package_pouch_product", "path": "skills/extract-skill/assets/products/butter-crisp-stick/包装盒独立包装产品对比.png", "purpose": "外盒、独立袋、透明托盒和单根产品的层级关系", "approved": true},
+    {"id": "side_plated", "path": "skills/extract-skill/assets/products/butter-crisp-stick/侧面盘装.JPG", "purpose": "完整体比例、重力支撑和交叉搭接", "approved": true},
+    {"id": "plated", "path": "skills/extract-skill/assets/products/butter-crisp-stick/盘装.png", "purpose": "多根完整产品的正面与侧面形体，不承担已有镜头堆叠构图", "approved": true}
+  ],
+  "commercial_claim_boundary": [
+    "不得凭空生成0蔗糖、安佳黄油、价格、优惠券、认证标或平台UI",
+    "包装或用户未提供清晰像素证明的声明只能保留在用户确认的口播中"
+  ],
+  "updated_at": "2026-08-21T00:00:00+08:00"
+}

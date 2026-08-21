@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "published_at": "2026-08-21",
+  "package": "butter-crisp-stick-qa-skill-update-v2",
+  "repository_visibility": "public",
+  "binary_user_assets_included": false,
+  "local_absolute_paths_removed": true,
+  "validation": {
+    "new_unit_tests": "6/6 passed",
+    "director_skill_quick_validate": "passed",
+    "extract_skill_quick_validate": "passed",
+    "director_skill_self_test": "passed"
+  },
+  "published_failure_codes": [
+    "PRODUCT_CROSS_SECTION_ROUNDED",
+    "PRODUCT_THICKNESS_COLLAPSED",
+    "PACKAGE_PRINT_IDENTITY_MISMATCH",
+    "PACKAGE_SCALE_MISMATCH",
+    "PACKAGE_DEPTH_COLLAPSED"
+  ],
+  "excluded_project_metadata": [
+    "approved asset paths",
+    "image hashes",
+    "per-shot approval manifests",
+    "user media"
+  ]
+}

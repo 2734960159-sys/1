@@ -1,0 +1,19 @@
+8.20 黄油脆丝棒 Skill/知识库更新回归测试
+日期：2026-08-21
+
+[PASS] audit_butter_crisp_qa.py 单元测试：6/6
+  - 完整逐对象 manifest 通过
+  - 圆形/椭圆形截面被 PRODUCT_CROSS_SECTION_ROUNDED 阻断
+  - 产品厚度塌缩被 PRODUCT_THICKNESS_COLLAPSED 阻断
+  - 生成式包装文字被 PACKAGE_PRINT_IDENTITY_MISMATCH 阻断
+  - 外盒厚度塌缩被 PACKAGE_DEPTH_COLLAPSED 阻断
+  - 对象清点不完整被 OBJECT_INVENTORY_INCOMPLETE 阻断
+
+[PASS] director-skill quick_validate.py
+[PASS] extract-skill quick_validate.py
+[PASS] director-skill scripts/self_test.py
+[PASS] 修改涉及 JSON 全部可解析
+[PASS] 项目级批准资产清单已在本地复核，但因公开仓库素材边界未发布
+[PASS] 公开包不包含逐镜路径、图片哈希或用户媒体
+
+注：自动脚本只验证 QA 记录完整性和数值闸门，不能替代原分辨率人工视觉审核。
